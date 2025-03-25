@@ -12,7 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('leave_balances', function (Blueprint $table) {
-            $table->id();
+            $table->id('id_leave_balance');
+            $table->bigInteger('id_employee')->unsigned();
+            $table->foreign('id_employee')->references('id_employee')->on('employees')->onDelete('cascade');
+            $table->integer('days');
+            $table->integer('taken');
+            $table->integer('year');
             $table->timestamps();
         });
     }
